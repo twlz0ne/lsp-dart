@@ -33,34 +33,8 @@
 
 ;;; Code:
 
-(require 'lsp-mode)
-
-(defconst lsp-dart--get-root
-  (lsp-make-traverser
-   #'(lambda (dir)
-       (directory-files dir
-                        nil
-                        (rx "pubspec.yaml" string-end)))))
-
-(defcustom lsp-dart-server-args
-  '()
-  "Extra arguments for the dart-stdio language server."
-  :group 'lsp-dart
-  :risky t
-  :type '(repeat string))
-
-(defconst lsp-dart-server-executable
-  (executable-find "dart_language_server"))
-
-(defun lsp-dart--ls-command ()
-  "Generate the language server startup command."
-  `(,lsp-dart-server-executable ,@lsp-dart-server-args))
-
-(lsp-define-stdio-client lsp-dart
-                         "dart"
-                         lsp-dart--get-root
-                         nil
-                         :command-fn 'lsp-dart--ls-command)
+(require 'lsp)
+(require 'lsp-clients)
 
 (provide 'lsp-dart)
 

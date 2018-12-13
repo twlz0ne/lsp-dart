@@ -8,8 +8,6 @@ Install [`lsp-mode`](https://github.com/emacs-lsp/lsp-mode) first, and either cl
 this repository, or install from MELPA. Add the following to your `.emacs`:
 
 ```emacs-lisp
-(require 'lsp-mode)
 (require 'lsp-dart)
-(add-to-list 'exec-path "<PATH-TO>/.pub-cache/bin"))
-(add-hook 'dart-mode-hook #'lsp-dart-enable)
+(add-hook 'dart-mode-hook 'lsp)
 ```
